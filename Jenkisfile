@@ -1,0 +1,24 @@
+pipeline {
+  agent any
+    stages {
+      stage('Main') {
+        parallel {
+          stage('Build') {
+            steps {
+             script {
+                    sh"""
+                    variable = python add.py
+                    """
+                    }
+              }
+            }
+          }
+          stage('Test'){
+              steps{
+                  echo "It is a test stage."
+              }
+          }
+        }
+      }
+    }
+}
